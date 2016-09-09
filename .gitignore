@@ -1,15 +1,7 @@
 .DS_Store
-.idea/
-composer.lock
-
-vendor/
-node_modules/
-
-# Laravel 5 & Lumen specific
-bootstrap/cache/
-.env.*.php
-.env.php
+.composer.lock
+/node_modules
+/public/storage
+/vendor
+/.idea
 .env
-
-# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
-.rocketeer/
