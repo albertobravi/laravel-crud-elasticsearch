@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('items', 'ItemController');
+
+Route::get('/search', ['as' => 'search', 'uses' => 'ItemController@search']);

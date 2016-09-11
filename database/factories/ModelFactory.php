@@ -21,3 +21,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Item::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->words(3, true),
+        'content' => $faker->paragraphs(1, true),
+        'published_at' => $faker->dateTimeThisYear()
+    ];
+});
