@@ -31,7 +31,7 @@
 
     <div class="form-group">
         {{ Form::label('published_at', 'Published At') }}
-        {{ Form::date('published_at', old('published_at', strtotime($item->published_at))) }}
+        {{ Form::date('published_at', old('published_at', $item->published_at ? new \Carbon\Carbon($item->published_at) : null)) }}
     </div>
 
     {{ Form::submit('Edit this item!', array('class' => 'btn btn-primary')) }}

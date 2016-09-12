@@ -13,9 +13,7 @@ composer install
 cd ~/project-dir/laradock
 
 docker-compose up -d nginx mysql elasticsearch
-```
 
-```
 docker-compose exec workspace bash
 
 php artisan migrate --seed

@@ -27,6 +27,6 @@ return array(
     | Elasticquent models.
     */
 
-    'default_index' => 'items_index',
+    'default_index' => 'app_elastic_index',
 
 );

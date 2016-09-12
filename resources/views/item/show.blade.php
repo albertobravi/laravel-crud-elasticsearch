@@ -11,6 +11,7 @@
                 <td>ID</td>
                 <td>Title</td>
                 <td>Content</td>
+                <td>Published</td>
                 <td>Actions</td>
             </tr>
         </thead>
@@ -19,6 +20,7 @@
                 <td>{{ $item->id }}</td>
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->content }}</td>
+                <td>{{ $item->published_at }}</td>
                 <td>
                     <ul>
                         <li><a class="btn btn-small btn-info" href="{{ URL::to('items/' . $item->id . '/edit') }}">Edit this Item</a></li>

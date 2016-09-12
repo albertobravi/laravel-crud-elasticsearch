@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Item;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -11,7 +12,10 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Item::class, 50)->create();
-        App\Item::addAllToIndex();
+        Item::deleteIndex();
+        
+        factory(Item::class, 50)->create();
+
+        Item::addAllToIndex();
     }
 }

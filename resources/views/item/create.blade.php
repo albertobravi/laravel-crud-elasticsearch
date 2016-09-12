@@ -30,7 +30,7 @@
 
     <div class="form-group">
         {{ Form::label('published_at', 'Published At') }}
-        {{ Form::date('published_at', \Carbon\Carbon::now()) }}
+        {{ Form::date('published_at', old('published_at', \Carbon\Carbon::now())) }}
     </div>
 
     {{ Form::submit('Create the Item!', array('class' => 'btn btn-primary')) }}

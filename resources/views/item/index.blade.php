@@ -11,6 +11,7 @@
                 <td>ID</td>
                 <td>Title</td>
                 <td>Content</td>
+                <td>Published</td>
                 <td>Actions</td>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->title }}</td>
                     <td>{{ $value->content }}</td>
+                    <td>{{ $value->published_at }}</td>
                     <td>
                         <ul>
                             <li><a class="btn btn-small btn-success" href="{{ URL::to('items/' . $value->id) }}">Show this Item</a></li>

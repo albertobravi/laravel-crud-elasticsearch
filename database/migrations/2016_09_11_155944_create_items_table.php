@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
 
             $table->string('title', 255);
             $table->text('content');
-            $table->timestamp('published_at');
+            $table->timestamp('published_at')->nullable();
 
             $table->timestamps();
         });

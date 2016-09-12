@@ -17,7 +17,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::orderBy('id', 'desc')->get();
 
         return view('item.index', [
             'items' => $items
@@ -43,15 +43,16 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title'     => 'required|unique:items|max:255',
-            'content'   => 'required',
+            'title'         => 'required|unique:items|max:255',
+            'content'       => 'required',
+            'published_at'  => 'date'
         ]);
 
         $item = new Item;
-        $item->title    = $request->get('title');
-        $item->content  = $request->get('content');
+        $item->title        = $request->input('title');
+        $item->content      = $request->input('content');
+        $item->published_at = $request->has('published_at') ? new \Carbon\Carbon($request->input('published_at')) : null;
         $item->save();
-        $item->addToIndex();
 
         $request->session()->flash('message', "Successfully created item!");
 
@@ -98,15 +99,16 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title'     => 'required|max:255',
-            'content'   => 'required',
+            'title'         => 'required|max:255',
+            'content'       => 'required',
+            'published_at'  => 'date'
         ]);
 
         $item = Item::find($id);
-        $item->title    = $request->get('title');
-        $item->content  = $request->get('content');
+        $item->title        = $request->input('title');
+        $item->content      = $request->input('content');
+        $item->published_at = $request->has('published_at') ? new \Carbon\Carbon($request->input('published_at')) : null;
         $item->save();
-        $item->addToIndex();
 
         $request->session()->flash('message', "Successfully updated item!");
 
@@ -137,16 +139,19 @@ class ItemController extends Controller
      */
     public function search(Request $request)
     {
-        $results = [];
+        $this->validate($request, [
+            'title'     => 'max:255',
+            'published' => 'in:true,false',
+            'date_from' => 'date',
+            'date_to'   => 'date'
+        ]);
 
-        if ($request->has('title')) {
-            $this->validate($request, [
-                'title' => 'required|max:255'
-            ]);
-
-            //$results = Item::searchByQuery(array('match' => array('title' => $request->input('title'))));
-            $results = Item::search($request->input('title'));
-        }
+        $results = Item::customSearch(
+            $request->input('title'),
+            $request->input('published'),
+            $request->input('date_from'),
+            $request->input('date_to')
+        );
 
         return view('item.search', [
             'results' => $results
