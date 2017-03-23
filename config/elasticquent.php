@@ -14,7 +14,7 @@ return array(
     */
 
     'config' => [
-        'hosts'     => ['elasticsearch:9200'],
+        'hosts'     => [env('ELASTIC_HOST', 'elasticsearch')],
         'retries'   => 1,
     ],
 
@@ -27,6 +27,6 @@ return array(
     | Elasticquent models.
     */
 
-    'default_index' => 'app_elastic_index',
+    'default_index' => env('ELASTIC_INDEX_NAME', 'elastic_index'),
 
 );

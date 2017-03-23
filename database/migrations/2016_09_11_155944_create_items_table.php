@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use App\Item;
+
 class CreateItemsTable extends Migration
 {
     /**
@@ -22,6 +24,8 @@ class CreateItemsTable extends Migration
 
             $table->timestamps();
         });
+
+        Item::createIndex($shards = null, $replicas = null);
     }
 
     /**
@@ -32,5 +36,7 @@ class CreateItemsTable extends Migration
     public function down()
     {
         Schema::drop('items');
+
+        Item::deleteIndex();
     }
 }

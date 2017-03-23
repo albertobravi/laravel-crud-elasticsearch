@@ -12,8 +12,6 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        Item::deleteIndex();
-        
         factory(Item::class, 50)->create();
 
         Item::addAllToIndex();
